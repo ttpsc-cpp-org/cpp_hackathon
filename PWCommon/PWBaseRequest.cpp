@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "PWBaseRequest.h"
 
 void PWBaseRequest::ToJson(nlohmann::json& j) const

@@ -1,8 +1,12 @@
-#include "stdafx.h"
-#include "..\PWServer\PWInventory.h"
+#include <gtest/gtest.h>
+#include <PWInventory.h>
 
 // TIP: Keep the tests simple, aim for good coverage 
-TEST(PWInventory, Foo) {
+// TEST(PWInventory, FooBad) {
+// 	PWInventory inventory{ { InventoryItem{ "Foo", 0 , 0 } } };
+// 	EXPECT_EQ(inventory[0].name, "Bar");
+// }
+TEST(PWInventory, FooGood) {
 	PWInventory inventory{ { InventoryItem{ "Foo", 0 , 0 } } };
-	EXPECT_EQ(inventory[0].name, "fixme");
+	EXPECT_EQ(inventory[0].name, "Foo");
 }

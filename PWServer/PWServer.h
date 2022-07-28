@@ -1,12 +1,14 @@
 #pragma once
 
+#include <string>
+
 class PWServer
 {
 private:
-
-	const std::string INVENTORY_FILE_PATH = ".\\inventory.json";
+	const std::string& invFile;
+	const std::string& outFile;
 
 public:
-	PWServer() {}
+	PWServer(const std::string& invFile,const std::string& outFile);
 	void Start();
 };

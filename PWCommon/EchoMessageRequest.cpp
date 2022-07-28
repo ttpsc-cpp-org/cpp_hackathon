@@ -1,5 +1,5 @@
-#include "stdafx.h"
 #include "EchoMessageRequest.h"
+#include <nlohmann/json.hpp>
 
 void EchoMessageRequest::ToJson(nlohmann::json& j) const
 {

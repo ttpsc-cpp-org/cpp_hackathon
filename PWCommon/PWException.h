@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma comment(lib, "PWCommon.lib")
-
 #include <exception>
 
 #define EXP_MESSAGE_MAX_LENGTH 1000
@@ -12,5 +10,5 @@ private:
 
 public:
 	PWException(const char* fmt, ...);
-	virtual char const* what() const;
+	virtual char const* what() const noexcept;
 };

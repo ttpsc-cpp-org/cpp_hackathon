@@ -1,5 +1,35 @@
-#include "stdafx.h"
 #include "PWInventory.h"
+
+void PWInventory::Save(const std::string& file)
+{
+	// build json
+	nlohmann::json inventoryArray = nlohmann::json::array();
+
+	for (auto& invItem : items)
+	{
+		nlohmann::json jsonItem;
+
+		jsonItem["name"] = invItem.name;
+		jsonItem["sellby"] = invItem.sellBy;
+		jsonItem["value"] = invItem.value;
+
+		inventoryArray.push_back(jsonItem);
+	}
+
+	//store items from repository collection to json tree
+	nlohmann::json inventoryJson;
+	inventoryJson["inventory"] = inventoryArray;
+
+	//write json file
+	std::ofstream inventoryStream;
+	inventoryStream.open(file.c_str());
+	if (!inventoryStream) {
+		throw PWException("failed to open inventory file at %s: ", file.c_str());
+	}
+
+	//save json stream into file
+	inventoryStream << inventoryJson.dump(2);
+}
 
 void PWInventory::Load(const std::string& file)
 {
@@ -32,7 +62,7 @@ void PWInventory::UpdateQuality()
 {
 	for (size_t i = 0; i < items.size(); i++)
 	{
-		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening workshop")
+		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening Workshop")
 		{
 			if (items[i].value > 0)
 			{
@@ -48,7 +78,7 @@ void PWInventory::UpdateQuality()
 			{
 				items[i].value = items[i].value + 1;
 
-				if (items[i].name == "Gardening workshop")
+				if (items[i].name == "Gardening Workshop")
 				{
 					if (items[i].sellBy < 11)
 					{
@@ -78,7 +108,7 @@ void PWInventory::UpdateQuality()
 		{
 			if (items[i].name != "Polka Dot Begonia")
 			{
-				if (items[i].name != "Gardening workshop")
+				if (items[i].name != "Gardening Workshop")
 				{
 					if (items[i].value > 0)
 					{

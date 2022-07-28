@@ -1,5 +1,7 @@
-#include "stdafx.h"
 #include "PWException.h"
+
+#include <cstdarg>
+#include <cstdio>
 
 PWException::PWException(const char* fmt, ...) : std::exception()
 {
@@ -9,7 +11,7 @@ PWException::PWException(const char* fmt, ...) : std::exception()
 	va_end(ap);
 }
 
-char const* PWException::what() const
+char const* PWException::what() const noexcept
 {
 	return msg;
 }

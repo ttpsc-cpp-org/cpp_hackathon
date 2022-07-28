@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "EchoMessageResponse.h"
 
 void EchoMessageResponse::ToJson(nlohmann::json& j) const

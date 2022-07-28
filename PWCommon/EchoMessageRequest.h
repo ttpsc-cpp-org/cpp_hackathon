@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 #include "PWBaseRequest.h"
 
 class EchoMessageRequest : public PWBaseRequest
