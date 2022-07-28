@@ -1,4 +1,4 @@
-#include "stdafx.h"
+// #include "stdafx.h"
 #include "PWBaseResponse.h"
 
 void PWBaseResponse::ToJson(nlohmann::json& j) const

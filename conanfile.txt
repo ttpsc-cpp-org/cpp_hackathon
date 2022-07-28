@@ -1,0 +1,9 @@
+
+[requires]
+nlohmann_json/[>=3.10.5]
+gtest/cci.20210126
+
+[generators]
+cmake_find_package
+visual_studio
+

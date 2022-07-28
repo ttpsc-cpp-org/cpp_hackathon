@@ -1,9 +1,12 @@
-#include "stdafx.h"
+// #include "stdafx.h"
+#include <stdexcept>
+
 #include "PWMessageSerializationFactory.h"
 #include "EchoMessageRequest.h"
 #include "EchoMessageResponse.h"
 #include "GetInventoryMessageRequest.h"
 #include "GetInventoryMessageResponse.h"
+#include "base64.hpp"
 
 std::unique_ptr<PWBaseMessage> PWMessageSerializationFactory::Create(char * buff)
 {
@@ -31,7 +34,7 @@ std::unique_ptr<PWBaseMessage> PWMessageSerializationFactory::Create(char * buff
 		break;
 	
 	default:
-		throw std::exception("Unknown request or response type");
+		throw std::invalid_argument((char*)"Unknown request or response type");
 	}
 
 	result->FromJson(json);

@@ -3,7 +3,7 @@
 #include <vector>
 #include <nlohmann/json.hpp>
 #include <fstream>
-#include "..\PWCommon\PWException.h"
+#include <PWException.h>
 #include "InventoryItem.h"
 
 class IPWInventory

@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "stdafx.h"
+// #include "stdafx.h"
+// #include "stdafx.h"
 #include "GetInventoryMessageResponse.h"
 
 void InventoryItemInfo::ToJson(nlohmann::json& j) const

@@ -12,5 +12,5 @@ private:
 
 public:
 	PWException(const char* fmt, ...);
-	virtual char const* what() const;
+	virtual char const* what() const noexcept;
 };

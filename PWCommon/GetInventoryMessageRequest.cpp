@@ -1,4 +1,4 @@
-#include "stdafx.h"
+// #include "stdafx.h"
 #include "GetInventoryMessageRequest.h"
 
 void GetInventoryMessageRequest::ToJson(nlohmann::json& j) const
