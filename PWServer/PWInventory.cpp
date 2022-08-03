@@ -1,5 +1,36 @@
 #include "PWInventory.h"
 
+void PWInventory::Save(const std::string& file)
+{
+	// build json
+	nlohmann::json inventoryArray = nlohmann::json::array();
+
+	for (auto& invItem : items)
+	{
+		nlohmann::json jsonItem;
+
+		jsonItem["name"] = invItem.name;
+		jsonItem["sellby"] = invItem.sellBy;
+		jsonItem["value"] = invItem.value;
+
+		inventoryArray.push_back(jsonItem);
+	}
+
+	//store items from repository collection to json tree
+	nlohmann::json inventoryJson;
+	inventoryJson["inventory"] = inventoryArray;
+
+	//write json file
+	std::ofstream inventoryStream;
+	inventoryStream.open(file.c_str());
+	if (!inventoryStream) {
+		throw PWException("failed to open inventory file at %s: ", file.c_str());
+	}
+
+	//save json stream into file
+	inventoryStream << inventoryJson.dump(2);
+}
+
 void PWInventory::Load(const std::string& file)
 {
 	//read json file

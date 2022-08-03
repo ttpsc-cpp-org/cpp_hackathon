@@ -34,3 +34,11 @@ target_link_libraries(PWServerExe
     PRIVATE
         PW::SERVER
 )
+
+install(TARGETS PWServerExe
+    RUNTIME DESTINATION .
+)
+
+install(FILES inventory.json
+    DESTINATION .
+)

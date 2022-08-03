@@ -2,9 +2,12 @@
 
 set THIS_DIR=%cd%
 set BUILD_DIR=%THIS_DIR%\build\win
+set INSTALL_DIR=%THIS_DIR%\build\win-install
 
 rmdir /S /Q %BUILD_DIR%
+rmdir /S /Q %INSTALL_DIR%
 mkdir %BUILD_DIR%
+mkdir %INSTALL_DIR%
 
 pushd %BUILD_DIR%
 
@@ -24,6 +27,7 @@ conan install ^
 if %errorlevel% neq 0 goto onerror
 
 cmake ^
+    -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% ^
     %THIS_DIR%
 if %errorlevel% neq 0 goto onerror
 

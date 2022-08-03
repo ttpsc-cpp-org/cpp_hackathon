@@ -5,9 +5,9 @@
 class PWServer
 {
 private:
-	static const std::string INVENTORY_FILE_PATH;
+	const std::string& invFile;
 
 public:
-	PWServer() {}
+	PWServer(const std::string& invFile);
 	void Start();
 };

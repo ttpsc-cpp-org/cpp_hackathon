@@ -4,14 +4,20 @@
 #include <iostream>
 #include <PWException.h>
 
-const std::string PWServer::INVENTORY_FILE_PATH(".\\inventory.json");
+PWServer::PWServer(const std::string& invFile)
+	: invFile(invFile)
+{
+}
 
 void PWServer::Start()
 {
 	//Init inventory
 	std::unique_ptr<PWInventory> inventory = std::make_unique<PWInventory>();
-	inventory->Load(INVENTORY_FILE_PATH);
+	inventory->Load(invFile);
 
 	//Update the inventory
-	inventory->UpdateQuality();	
+	inventory->UpdateQuality();
+
+    // Store the inventory
+	inventory->Save(invFile);
 }
