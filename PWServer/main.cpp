@@ -1,21 +1,14 @@
 #include <iostream>
+
+#include <PWServer.h>
 #include <PWException.h>
-
-#include "PWInventory.h"
-
-const std::string INVENTORY_FILE_PATH = ".\\inventory.json";
 
 int main()
 {
 	try
 	{
-		//Init inventory
-		std::unique_ptr<PWInventory> inventory = std::make_unique<PWInventory>();
-		inventory->Load(INVENTORY_FILE_PATH);
-
-		//Update the inventory
-		inventory->UpdateQuality();
-
+		PWServer server;
+		return server.Start();
 	}
 	catch (const PWException& exp)
 	{
