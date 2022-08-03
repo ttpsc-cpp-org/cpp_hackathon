@@ -1,4 +1,4 @@
-find_package(nlohmann_json CONFIG REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 add_library(PW_Common)
 add_library(PW::COMMON ALIAS PW_Common)

@@ -1,5 +1,5 @@
 
-find_package(nlohmann_json CONFIG REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 add_library(PW_Server)
 add_library(PW::SERVER ALIAS PW_Server)
