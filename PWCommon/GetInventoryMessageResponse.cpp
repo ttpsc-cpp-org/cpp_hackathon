@@ -2,6 +2,8 @@
 // #include "stdafx.h"
 #include "GetInventoryMessageResponse.h"
 
+#include <sstream>
+
 void InventoryItemInfo::ToJson(nlohmann::json& j) const
 {
 	j[ITEM_NAME] = name;

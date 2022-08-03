@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma comment(lib, "PWCommon.lib")
-
 #include <exception>
 
 #define EXP_MESSAGE_MAX_LENGTH 1000

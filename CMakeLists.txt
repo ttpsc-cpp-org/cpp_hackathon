@@ -6,6 +6,10 @@ project(PlantWorld
 )
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/cmake")
+# To get it work with conan cmake_find_package generator
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_BINARY_DIR})
+ 
 
 option(ENABLE_TESTS "Enable tests" ON)
 option(ENABLE_STATIC_ANALYSIS "Enables static analysis. Requires CPPCheck" OFF)

@@ -1,9 +1,7 @@
-// #include "stdafx.h"
 #include "PWServer.h"
 #include "PWInventory.h"
-#include "PWInventory.h"
-#include <PWConnectionHandlerFactory.h>
-#include <PWServerSocket.h>
+
+#include <iostream>
 #include <PWException.h>
 
 void PWServer::Start()
