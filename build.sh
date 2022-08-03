@@ -33,4 +33,9 @@ cmake \
     --build . \
     --config Debug
 
+cmake \
+    --build . \
+    --config Debug \
+    --target unit_tests
+
 popd

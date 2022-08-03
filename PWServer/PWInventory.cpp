@@ -1,4 +1,3 @@
-// #include "stdafx.h"
 #include "PWInventory.h"
 
 void PWInventory::Load(const std::string& file)

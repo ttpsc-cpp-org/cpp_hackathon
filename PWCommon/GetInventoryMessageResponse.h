@@ -1,5 +1,5 @@
 #pragma once
-// #include "stdafx.h"
+
 #include "PWBaseResponse.h"
 
 class InventoryItemInfo : PWSerializableMessage

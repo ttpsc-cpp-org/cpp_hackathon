@@ -1,4 +1,3 @@
-// #include "stdafx.h"
 #include "base64.hpp"
 #include "PWMessageSerializer.h"
 #include "PWBaseMessage.h"

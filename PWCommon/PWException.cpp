@@ -1,7 +1,8 @@
-// #include "stdafx.h"
 #include "PWException.h"
+
 #include <cstdarg>
 #include <cstdio>
+
 PWException::PWException(const char* fmt, ...) : std::exception()
 {
 	va_list ap;

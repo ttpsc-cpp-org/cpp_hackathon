@@ -1,12 +1,7 @@
-// PW.cpp : Defines the entry point for the console application.
-//
-#if 0
-// #include "stdafx.h"
-#endif
 #include <iostream>
-#include "PWInventory.h"
 #include <PWException.h>
 
+#include "PWInventory.h"
 
 const std::string INVENTORY_FILE_PATH = ".\\inventory.json";
 
