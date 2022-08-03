@@ -6,6 +6,7 @@ set -x
 THIS_DIR=$(pwd)
 
 BUILD_DIR=${THIS_DIR}/build/linux
+INSTALL_DIR=${THIS_DIR}/build/linux-install
 
 pushd ${BUILD_DIR}
 
@@ -20,4 +21,17 @@ cmake \
     --build . \
     --target unit_tests
 
+cmake \
+    --install .
+
 popd
+
+pushd ${INSTALL_DIR}
+
+echo ### Test run ###
+./PWServerExe ./inventory.json
+echo ### Test run finished ###
+
+popd
+
+echo ### SUCCESS ###
