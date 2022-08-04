@@ -28,6 +28,11 @@ jobs:
         python-version: '3.10' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
+    - uses: actions/checkout@v3
+      with:
+        repository: kexcpedti/ttpsc_cpp_recruitment_tests
+        path: tests
+
     - name: Install Conan
       id: conan
       uses: turtlebrowser/get-conan@main
