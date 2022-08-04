@@ -68,6 +68,7 @@ jobs:
       run:  cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target ctest_coverage
 
     - name: Run external tests
+      if: steps.install.outcome == 'success'
       working-directory: ${{github.workspace}}/tests/src
       env:
         EXE_LOCATION: ${{github.workspace}}/install/PWServerExe
