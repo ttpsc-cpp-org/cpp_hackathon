@@ -62,7 +62,7 @@ void PWInventory::UpdateQuality()
 {
 	for (size_t i = 0; i < items.size(); i++)
 	{
-		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening workshop")
+		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening Workshop")
 		{
 			if (items[i].value > 0)
 			{
@@ -78,7 +78,7 @@ void PWInventory::UpdateQuality()
 			{
 				items[i].value = items[i].value + 1;
 
-				if (items[i].name == "Gardening workshop")
+				if (items[i].name == "Gardening Workshop")
 				{
 					if (items[i].sellBy < 11)
 					{
@@ -108,7 +108,7 @@ void PWInventory::UpdateQuality()
 		{
 			if (items[i].name != "Polka Dot Begonia")
 			{
-				if (items[i].name != "Gardening workshop")
+				if (items[i].name != "Gardening Workshop")
 				{
 					if (items[i].value > 0)
 					{
