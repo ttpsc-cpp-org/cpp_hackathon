@@ -32,6 +32,7 @@ jobs:
       with:
         repository: kexcpedti/ttpsc_cpp_recruitment_tests
         path: tests
+        ref: main
 
     - name: Install Conan
       id: conan
