@@ -1,26 +1,31 @@
-// PW.cpp : Defines the entry point for the console application.
-//
-#if 0
-// #include "stdafx.h"
-#endif
 #include <iostream>
-#include "PWInventory.h"
+
+#include <PWServer.h>
 #include <PWException.h>
 
-
-const std::string INVENTORY_FILE_PATH = ".\\inventory.json";
-
-int main()
+int main(int argc, char* argv[])
 {
+	static const std::string DEFAULT_INVENTORY_FILE_PATH(".\\inventory.json");
+
 	try
 	{
-		//Init inventory
-		std::unique_ptr<PWInventory> inventory = std::make_unique<PWInventory>();
-		inventory->Load(INVENTORY_FILE_PATH);
+		std::string invFile;
 
-		//Update the inventory
-		inventory->UpdateQuality();
+		if (argc == 1)
+		{
+			invFile = DEFAULT_INVENTORY_FILE_PATH;
+		}
+		else if (argc == 2)
+		{
+			invFile = argv[1];
+		}
+		else
+		{
+			throw PWException("Invalid arguments given");
+		}
 
+		PWServer server(invFile);
+		server.Start();
 	}
 	catch (const PWException& exp)
 	{

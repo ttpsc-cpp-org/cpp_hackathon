@@ -1,6 +1,6 @@
-// #include "stdafx.h"
-// #include "stdafx.h"
 #include "GetInventoryMessageResponse.h"
+
+#include <sstream>
 
 void InventoryItemInfo::ToJson(nlohmann::json& j) const
 {

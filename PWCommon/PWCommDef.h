@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma comment(lib, "PWCommon.lib")
-
 #undef UNICODE
 
 #define WIN32_LEAN_AND_MEAN

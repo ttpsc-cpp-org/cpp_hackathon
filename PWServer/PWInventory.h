@@ -11,6 +11,7 @@ class IPWInventory
 public:
 	virtual void UpdateQuality() = 0;
 	virtual void Load(const std::string& file) = 0;
+	virtual void Save(const std::string& file) = 0;
 	virtual InventoryItem& operator[](int index) = 0;
 	virtual int Count() const = 0;
 };
@@ -24,6 +25,7 @@ public:
 	PWInventory& operator=(const PWInventory &) = delete;
 
 	void Load(const std::string& file) override;
+	void Save(const std::string& file) override;
 	void UpdateQuality() override;
 	InventoryItem& operator[](int index) override;
 	int Count() const override;
