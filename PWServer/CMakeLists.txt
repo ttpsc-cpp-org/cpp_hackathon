@@ -10,6 +10,7 @@ target_sources(PW_Server
         PWInventory.h
         PWServer.cpp
         PWServer.h
+        inventory.json
 )
 
 target_link_libraries(PW_Server
