@@ -60,9 +60,37 @@ void PWInventory::Load(const std::string& file)
 
 void PWInventory::UpdateQuality()
 {
+	const std::string lowCostPht = "Low-Cost Pothos";
+	const int cellByLowCostPht{0};
+	bool decreaseOne{};
+
 	for (size_t i = 0; i < items.size(); i++)
 	{
-		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening Workshop")
+		if (lowCostPht == items[i].name)
+		{
+			if (cellByLowCostPht < items[i].sellBy)
+			{
+				decreaseOne = true;
+			}
+			else
+			{
+				decreaseOne = false;
+			}
+
+			if (items[i].value > 1)
+			{
+				items[i].value -= decreaseOne ? 1 : 2;
+			}
+			else if (1 == items[i].value)
+			{
+				items[i].value = 0;
+			}
+
+			items[i].sellBy -= 1;
+			continue;
+		}
+
+		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening workshop")
 		{
 			if (items[i].value > 0)
 			{
@@ -78,7 +106,7 @@ void PWInventory::UpdateQuality()
 			{
 				items[i].value = items[i].value + 1;
 
-				if (items[i].name == "Gardening Workshop")
+				if (items[i].name == "Gardening workshop")
 				{
 					if (items[i].sellBy < 11)
 					{
@@ -108,7 +136,7 @@ void PWInventory::UpdateQuality()
 		{
 			if (items[i].name != "Polka Dot Begonia")
 			{
-				if (items[i].name != "Gardening Workshop")
+				if (items[i].name != "Gardening workshop")
 				{
 					if (items[i].value > 0)
 					{
