@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../ttpsc_cpp_recruitment_tests"
 		}
 	],
 	"settings": {}

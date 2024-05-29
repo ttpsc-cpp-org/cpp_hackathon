@@ -93,7 +93,7 @@ jobs:
         EXE_LOCATION: ${{github.workspace}}/install/PWServerExe
         JSON_LOCATION: ${{github.workspace}}/tests/test.json
       run:
-        python -m unittest -v csv_tests -b
+        python -m unittest -v -b
     - name: Run HTTP tests
       if: always() || steps.setup_http_server.outcome == 'success'
       working-directory: ${{github.workspace}}/server
