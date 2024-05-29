@@ -32,7 +32,7 @@ jobs:
         repository: kexcpedti/ttpsc_cpp_recruitment_tests
         path: tests
         ref: main
-        token: ${{ secrets.ACCESS_TOKEN }}
+        token: ${{ secrets.TEST_ACCESS_TOKEN }}
 
     - name: Install Conan
       id: conan
