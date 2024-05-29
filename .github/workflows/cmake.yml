@@ -91,7 +91,11 @@ jobs:
           PWTests/*
           server/tests/*
         fail-under-line: 75%
-
+    - name: Determine complexity.
+      id: scc
+      uses: hdmsantander/scc-docker-action@3.0
+      with:
+        args: ${{ env.workspace }} PWServer --ci
     - name: Run CSV file tests
       if: always() || steps.install.outcome == 'success'
       working-directory: ${{github.workspace}}/tests/src
