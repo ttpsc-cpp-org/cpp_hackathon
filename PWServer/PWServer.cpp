@@ -4,8 +4,9 @@
 #include <iostream>
 #include <PWException.h>
 
-PWServer::PWServer(const std::string& invFile)
-	: invFile(invFile)
+PWServer::PWServer(const std::string& invFile,
+				  const std::string& outFile)
+	: invFile(invFile),outFile(outFile)
 {
 }
 
@@ -19,5 +20,5 @@ void PWServer::Start()
 	inventory->UpdateQuality();
 
     // Store the inventory
-	inventory->Save(invFile);
+	inventory->Save(outFile);
 }
