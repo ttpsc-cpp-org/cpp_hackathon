@@ -5,7 +5,6 @@ on:
     branches: 
       - "master"
       - "team/**"
-      - "dev/**"
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
@@ -78,13 +77,21 @@ jobs:
       id: setup_http_server
       working-directory: ${{github.workspace}}/server
       run: |
-        python app.py
+        echo ""
     - name: Run unit tests
+      if: always() || steps.install.outcome == 'success'
       working-directory: ${{github.workspace}}/build
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run:  cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target ctest_coverage
-    
+    - name: Generate a code coverage report
+      uses: threeal/gcovr-action@v1.0.0
+      with:
+        excludes: |
+          PWTests/*
+          server/tests/*
+        fail-under-line: 75%
+
     - name: Run CSV file tests
       if: always() || steps.install.outcome == 'success'
       working-directory: ${{github.workspace}}/tests/src
@@ -92,12 +99,9 @@ jobs:
         EXE_LOCATION: ${{github.workspace}}/install/PWServerExe
         JSON_LOCATION: ${{github.workspace}}/tests/test.json
       run:
-        python -m unittest -v csv_tests -b
+        python -m unittest -v -b
     - name: Run HTTP tests
       if: always() || steps.setup_http_server.outcome == 'success'
-      working-directory: ${{github.workspace}}
-      env:
-        SERVER_ADDRESS: http://localhost/
-        JSON_LOCATION: ${{github.workspace}}/tests/test.json
+      working-directory: ${{github.workspace}}/server
       run:
-        python -m tornado.test.runtests server.tests
+        python -m tornado.test.runtests tests

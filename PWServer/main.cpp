@@ -5,26 +5,28 @@
 
 int main(int argc, char* argv[])
 {
-	static const std::string DEFAULT_INVENTORY_FILE_PATH(".\\inventory.json");
+	std::string infile,outfile;
+	if (argc != 5) {
+		std::cerr << "Usage: " <<argv[0]<< " /infile <filename> /outfile <filename>"<<std::endl;
+		return 1;
+	}
+	for (int i = 1; i < argc; i += 2) {
+        std::string argName = argv[i];
+        if (argName == "/infile") {
+            infile = argv[i + 1];
+        } else if (argName == "/outfile") {
+            outfile = argv[i + 1];
+        } else {
+            std::cerr << "Unknown argument: " << argName << std::endl;
+            return 1;
+        }
+    }
 
 	try
 	{
-		std::string invFile;
 
-		if (argc == 1)
-		{
-			invFile = DEFAULT_INVENTORY_FILE_PATH;
-		}
-		else if (argc == 2)
-		{
-			invFile = argv[1];
-		}
-		else
-		{
-			throw PWException("Invalid arguments given");
-		}
 
-		PWServer server(invFile);
+		PWServer server(infile, outfile);
 		server.Start();
 	}
 	catch (const PWException& exp)

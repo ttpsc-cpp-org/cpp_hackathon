@@ -6,8 +6,9 @@ class PWServer
 {
 private:
 	const std::string& invFile;
+	const std::string& outFile;
 
 public:
-	PWServer(const std::string& invFile);
+	PWServer(const std::string& invFile,const std::string& outFile);
 	void Start();
 };
