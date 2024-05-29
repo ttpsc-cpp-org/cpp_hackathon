@@ -67,6 +67,7 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/install -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCI_CD_COVERAGE=ON
 
     - name: Build program
+      id:build
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target PWServerExe
 
@@ -92,6 +93,7 @@ jobs:
           server/tests/*
         fail-under-line: 75%
     - name: Determine complexity.
+      if: always() || steps.build.outcome == 'success'
       id: scc
       uses: hdmsantander/scc-docker-action@3.0
       with:
