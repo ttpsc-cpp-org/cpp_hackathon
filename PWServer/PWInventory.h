@@ -23,7 +23,9 @@ public:
 	PWInventory() = default;
 	PWInventory(const PWInventory&) = delete;
 	PWInventory& operator=(const PWInventory &) = delete;
-
+	void Load(const std::vector<InventoryItem>& _items){
+		items=_items;
+	}
 	void Load(const std::string& file) override;
 	void Save(const std::string& file) override;
 	void UpdateQuality() override;

@@ -1,21 +1,17 @@
 #include <gtest/gtest.h>
 #include <PWInventory.h>
+#include <PWServer.h>
 
-// TIP: Keep the tests simple, aim for good coverage 
-// TEST(PWInventory, FooBad) {
-// 	PWInventory inventory{ { InventoryItem{ "Foo", 0 , 0 } } };
-// 	EXPECT_EQ(inventory[0].name, "Bar");
-// }
-#include "gtest/gtest.h"
-#include "PWInventory.h"
+
 
 TEST(PWInventoryTest, SaveAndLoadTest) {
-    PWInventory inventory;
-    inventory.items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
-    inventory.items.push_back(InventoryItem{"White Monstera", 4, 80});
-    inventory.items.push_back(InventoryItem{"Gardening Workshop", 10, 10});
-    inventory.items.push_back(InventoryItem{"Somename", 8, 0});
-
+    std::vector<InventoryItem> items;
+    items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
+    items.push_back(InventoryItem{"White Monstera", 4, 80});
+    items.push_back(InventoryItem{"Gardening Workshop", 10, 10});
+    items.push_back(InventoryItem{"Somename", 8, 0});
+	PWInventory inventory;
+	inventory.Load(items);
     inventory.Save("test.json");
 
     PWInventory loadedInventory;
@@ -32,10 +28,13 @@ TEST(PWInventoryTest, SaveAndLoadTest) {
 
 TEST(PWInventoryTest, UpdateQualityTest) {
     PWInventory inventory;
-    inventory.items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
-    inventory.items.push_back(InventoryItem{"White Monstera", 4, 80});
-    inventory.items.push_back(InventoryItem{"Gardening Workshop", 10, 10});
-    inventory.items.push_back(InventoryItem{"Somename", 8, 0});
+	std::vector<InventoryItem> items;
+
+    items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
+    items.push_back(InventoryItem{"White Monstera", 4, 80});
+    items.push_back(InventoryItem{"Gardening Workshop", 10, 10});
+    items.push_back(InventoryItem{"Somename", 8, 0});
+	inventory.Load(items);
 
     inventory.UpdateQuality();
 
@@ -58,7 +57,25 @@ TEST(PWInventoryTest, UpdateQualityTest) {
 
 TEST(PWInventoryTest, OutOfRangeTest) {
     PWInventory inventory;
-    inventory.items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
+	std::vector<InventoryItem> items;
+
+    items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
+	inventory.Load(items);
 
     EXPECT_THROW(inventory[1], PWException);
+}
+
+
+TEST(PWServerTest, Start) {
+    std::vector<InventoryItem> items;
+    items.push_back(InventoryItem{"Polka Dot Begonia", 4, 30});
+    items.push_back(InventoryItem{"White Monstera", 4, 80});
+    items.push_back(InventoryItem{"Gardening Workshop", 10, 10});
+    items.push_back(InventoryItem{"Somename", 8, 0});
+	PWInventory inventory;
+	inventory.Load(items);
+    inventory.Save("test.json");
+
+    PWServer server("test.json", "test.json");
+	server.Start();
 }
