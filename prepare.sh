@@ -6,7 +6,7 @@ set -x
 THIS_DIR=$(pwd)
 BUILD_DIR=${THIS_DIR}/build/linux
 INSTALL_DIR=${THIS_DIR}/build/linux-install
-CMAKE_GENERATOR="Ninja"
+CMAKE_GENERATOR="Unix Makefiles"
 
 rm -rf ${BUILD_DIR}
 rm -rf ${INSTALL_DIR}

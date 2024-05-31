@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.2)
 
 project(PlantWorld
     LANGUAGES
@@ -33,7 +33,7 @@ if(ENABLE_CODE_COVERAGE)
     if(CMAKE_COMPILER_IS_GNUCXX)
         include(CodeCoverage)
         append_coverage_compiler_flags()
-        set(COVERAGE_EXCLUDES "PWTests/*" "PWCommon/*") 
+        set(COVERAGE_EXCLUDES "PWTests/*") 
     endif()
 endif()
 

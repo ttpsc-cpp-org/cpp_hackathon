@@ -29,7 +29,7 @@ popd
 pushd ${INSTALL_DIR}
 
 echo ### Test run ###
-./PWServerExe ./inventory.json
+./PWServerExe /infile ./inventory.json /outfile ./inventory.json
 echo ### Test run finished ###
 
 popd
