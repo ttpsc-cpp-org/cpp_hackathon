@@ -99,6 +99,28 @@ jobs:
       uses: hdmsantander/scc-docker-action@3.0
       with:
         args: ${{ env.workspace }} PWServer --ci
+    
+    - name: Parse complexity
+      id: parse_complexity
+      run: |
+        complexity=$(echo "${{ steps.scc.outputs.stdout }}" | awk '/Total/{print $NF}')
+        echo "complexity=$complexity" >> $GITHUB_ENV
+        echo "${complexity}"
+    
+    - name: Check complexity
+      run: |
+        if (( $(echo "${{ env.complexity }} > 10" | bc -l) )); then
+          echo "Complexity is above 10, failing build"
+          exit 1
+        fi
+      shell: bash
+    - name: Check complexity
+      run: |
+        if [ ${{ steps.parse_complexity.outputs.complexity }} -gt 10 ]; then
+          echo "Complexity is above 10, failing build"
+          exit 1
+        fi
+      shell: bash
     - name: Run CSV file tests
       if: always() || steps.install.outcome == 'success'
       working-directory: ${{github.workspace}}/tests/src
