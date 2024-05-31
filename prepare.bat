@@ -1,5 +1,9 @@
 @echo off
 
+conan config install ./conan
+conan install . -pr MinGW --build=missing
+pip install gcovr
+
 set THIS_DIR=%cd%
 set BUILD_DIR=%THIS_DIR%\build\win
 set INSTALL_DIR=%THIS_DIR%\build\win-install

@@ -3,6 +3,9 @@
 set -e
 set -x
 
+conan config install ./conan
+pip install gcovr
+
 THIS_DIR=$(pwd)
 BUILD_DIR=${THIS_DIR}/build/linux
 INSTALL_DIR=${THIS_DIR}/build/linux-install
