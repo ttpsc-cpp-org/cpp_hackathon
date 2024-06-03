@@ -10,14 +10,16 @@ You were told that application was poorly maintained, so you were given some tim
 
 1.	OS: Ubuntu 22.10 (WSL is fine as well)
 2.	Required C++ tools/packages:
-    a.	gcc
-    b.	CMake
-    c.	ConanIO v1.64 
-    d.	Gcov
-    e.	LCov
-    f.	GCovr
-    g.	IDE (VSCode (?))
-    h.	ninja-build
+   
+
+    * gcc
+    * CMake
+    * ConanIO v1.64 
+    * GCov
+    * LCov
+    * GCovr
+    * IDE (VSCode (?))
+    * ninja-build (optional)
 
 ## Workflow:
 
