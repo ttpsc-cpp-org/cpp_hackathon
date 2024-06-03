@@ -12,8 +12,9 @@ target_sources(test_project
 
 target_link_libraries(test_project
     PRIVATE
-        PW::SERVER
-        GTest::gtest
+    PW::SERVER
+    GTest::GTest
+    GTest::gtest_main
 )
 
 if(ENABLE_CODE_COVERAGE)
