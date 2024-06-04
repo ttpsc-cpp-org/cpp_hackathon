@@ -8,25 +8,35 @@ You were told that application was poorly maintained, so you were given some tim
 
 ## Pre-requisite:
 
-1.	OS: Ubuntu 22.10 (WSL is fine as well)
-2.	Required C++ tools/packages:
+### Environment preparation:
+1.	Log-in to your lab virtual machine using credentials provided.
+2.	Run PowerShell as Administrator.
+3.  Enable WSL2 and install Ubuntu machine. [Instructions](https://docs.microsoft.com/en-us/windows/wsl/install). 
+    TL;DR:
+    ```powershell
+    1. 
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    2.
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    3.
+    wsl --set-default-version 2
+    4. 
+    wsl --install -d Ubuntu
+    5. Restart machine
+    shutdown /r /t 0
+    ```
+    Wait for the machine to restart.
+4.	Generate ssh key and add it to your Github account. [Instructions](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+5.  Clone hackathon repository to your wsl environment using ssh:
+    ```
+    git clone git@github.com:copworkshop/cpp_hackathon.git
+    cd cpp_hackathon
+    ```
+6.  Run `./bootstrap.sh' script to install necessary tools and dependencies.
+7.  Activate Python Virtual Env using `source venv/bin/activate` command.
+8.  Run `./prepare.sh` script to prepare necessary conan packages.
+9.  Use `./build.sh` or direct cmake commands to build and run tests.
 
-    a.	gcc
-
-    b.	CMake
-
-    c.	ConanIO v1.64 
-
-    d.	Gcov
-
-    e.	LCov
-
-    f.	GCovr
-
-    g.	IDE (VSCode (?))
-
-    h.	ninja-build
-    
 
 ## Workflow:
 
