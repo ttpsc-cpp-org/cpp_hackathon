@@ -34,6 +34,9 @@ You were told that application was poorly maintained, so you were given some tim
     ```
 6.  Run `./bootstrap.sh' script to install necessary tools and dependencies.
 7.  Activate Python Virtual Env using `source venv/bin/activate` command.
+    ```
+    NOTE: You must activate the virtual environment each time you open a new terminal.
+    ```
 8.  Run `./prepare.sh` script to prepare necessary conan packages.
 9.  Use `./build.sh` or direct cmake commands to build and run tests.
 
