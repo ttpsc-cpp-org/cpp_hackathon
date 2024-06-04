@@ -8,32 +8,72 @@ You were told that application was poorly maintained, so you were given some tim
 
 ## Pre-requisite:
 
-1.	OS: Ubuntu 22.10 (WSL is fine as well)
-2.	Required C++ tools/packages:
+### Environment preparation:
+1.	Log-in to your lab virtual machine using credentials provided.
+2.	Run PowerShell as Administrator.
+3.  Enable WSL2 and install Ubuntu machine. [Instructions](https://docs.microsoft.com/en-us/windows/wsl/install). 
+    TL;DR:
+    ```powershell
+    1. 
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    2.
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    3.
+    wsl --set-default-version 2
+    4. 
+    wsl --install -d Ubuntu
+    5. Restart machine
+    shutdown /r /t 0
+    ```
+    Wait for the machine to restart.
+4.	Generate ssh key and add it to your Github account. [Instructions](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
+5.  Clone hackathon repository to your wsl environment using ssh:
+    ```
+    git clone git@github.com:copworkshop/cpp_hackathon.git
+    cd cpp_hackathon
+    ```
+6.  Run `./bootstrap.sh' script to install necessary tools and dependencies.
+    ```
+    NOTE: You may need to run `chmod +x *.sh` to make scripts executable.
+    ```
 
-    a.	gcc
+7.  Activate Python Virtual Env using `source venv/bin/activate` command.
+    ```
+    NOTE: You must activate the virtual environment each time you open a new terminal.
+    ```
+8.  Run `./prepare.sh` script to prepare necessary conan packages.
 
-    b.	CMake
+#### If you are not using VSCode (not recomended):
+9.  Use `./build.sh` or direct cmake commands to build and run tests.
+10. Configure your IDE to use CoPilot.
+#### If you are using VSCode:
+9. Open repository in VSCode from WSL. 
+``` 
+code .
+```
+10. Set up IDE (VSCode preferred) to work with WSL environment. [Instructions](https://code.visualstudio.com/docs/cpp/config-wsl)
+    TL;DR:
+    ```
+    1. Install Remote - WSL extension in VSCode.
+    2. Open WSL terminal in VSCode.
+    3. Install C++ extension in WSL environment.
+    4. Open CMake project in WSL environment.
+    ```
+11. Install CoPilot extension in VSCode. [Instructions](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+    TL;DR:
+    ```
+    1. Install CoPilot extension in VSCode.
+    2. Sign-in to your lab Github account.
+    ```
 
-    c.	ConanIO v1.64 
-
-    d.	Gcov
-
-    e.	LCov
-
-    f.	GCovr
-
-    g.	IDE (VSCode (?))
-
-    h.	ninja-build
-    
 
 ## Workflow:
 
 ### Working on this repository:
-1. Clone this repository.
-2. Invoke `./prepare.sh` script to prepare necessary conan packages.
-3. Use `./build.sh` or direct cmake commands to build and run tests.
+1. Use `./build.sh` script to build and run tests for local verification.
+OR
+2. Use VSCode `Ctrl+Shift+B` to build and run tests.
+
 
 ### Working on challenges:
 1. Use branch with name *team/*<your_team_name> as your trunk.
@@ -51,3 +91,4 @@ You were told that application was poorly maintained, so you were given some tim
 ## Challenges:
 
 To be added soon!
+
