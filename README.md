@@ -33,21 +33,47 @@ You were told that application was poorly maintained, so you were given some tim
     cd cpp_hackathon
     ```
 6.  Run `./bootstrap.sh' script to install necessary tools and dependencies.
+    ```
+    NOTE: You may need to run `chmod +x *.sh` to make scripts executable.
+    ```
+
 7.  Activate Python Virtual Env using `source venv/bin/activate` command.
     ```
     NOTE: You must activate the virtual environment each time you open a new terminal.
     ```
 8.  Run `./prepare.sh` script to prepare necessary conan packages.
-9.  Use `./build.sh` or direct cmake commands to build and run tests.
 
+#### If you are not using VSCode (not recomended):
+9.  Use `./build.sh` or direct cmake commands to build and run tests.
+10. Configure your IDE to use CoPilot.
+#### If you are using VSCode:
+9. Open repository in VSCode from WSL. 
+``` 
+code .
+```
+10. Set up IDE (VSCode preferred) to work with WSL environment. [Instructions](https://code.visualstudio.com/docs/cpp/config-wsl)
+    TL;DR:
+    ```
+    1. Install Remote - WSL extension in VSCode.
+    2. Open WSL terminal in VSCode.
+    3. Install C++ extension in WSL environment.
+    4. Open CMake project in WSL environment.
+    ```
+11. Install CoPilot extension in VSCode. [Instructions](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+    TL;DR:
+    ```
+    1. Install CoPilot extension in VSCode.
+    2. Sign-in to your lab Github account.
+    ```
 
 
 ## Workflow:
 
 ### Working on this repository:
-1. Clone this repository.
-2. Invoke `./prepare.sh` script to prepare necessary conan packages.
-3. Use `./build.sh` or direct cmake commands to build and run tests.
+1. Use `./build.sh` script to build and run tests for local verification.
+OR
+2. Use VSCode `Ctrl+Shift+B` to build and run tests.
+
 
 ### Working on challenges:
 1. Use branch with name *team/*<your_team_name> as your trunk.
