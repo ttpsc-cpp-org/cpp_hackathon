@@ -5,6 +5,8 @@ set -x
 
 conan config install ./conan
 pip install gcovr
+conan profile new default --detect
+conan profile update settings.compiler.libcxx=libstdc++11 default
 
 THIS_DIR=$(pwd)
 BUILD_DIR=${THIS_DIR}/build/linux
