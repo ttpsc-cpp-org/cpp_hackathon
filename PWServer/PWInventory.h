@@ -31,5 +31,10 @@ public:
 	int Count() const override;
 
 protected:
+	void UpdateItemQuality(InventoryItem& item);
+	void UpdateRegularItemQuality(InventoryItem& item);
+	void UpdateSpecialItemQuality(InventoryItem& item);
+	void HandleExpiredItem(InventoryItem& item);
+
 	std::vector<InventoryItem> items;
 };

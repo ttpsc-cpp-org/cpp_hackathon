@@ -60,80 +60,75 @@ void PWInventory::Load(const std::string& file)
 
 void PWInventory::UpdateQuality()
 {
-	for (size_t i = 0; i < items.size(); i++)
-	{
-		if (items[i].name != "Polka Dot Begonia" && items[i].name != "Gardening Workshop")
-		{
-			if (items[i].value > 0)
-			{
-				if (items[i].name != "White Monstera")
-				{
-					items[i].value = items[i].value - 1;
-				}
-			}
-		}
-		else
-		{
-			if (items[i].value < 50)
-			{
-				items[i].value = items[i].value + 1;
-
-				if (items[i].name == "Gardening Workshop")
-				{
-					if (items[i].sellBy < 11)
-					{
-						if (items[i].value < 50)
-						{
-							items[i].value = items[i].value + 1;
-						}
-					}
-
-					if (items[i].sellBy < 6)
-					{
-						if (items[i].value < 50)
-						{
-							items[i].value = items[i].value + 1;
-						}
-					}
-				}
-			}
-		}
-
-		if (items[i].name != "White Monstera")
-		{
-			items[i].sellBy = items[i].sellBy - 1;
-		}
-
-		if (items[i].sellBy < 0)
-		{
-			if (items[i].name != "Polka Dot Begonia")
-			{
-				if (items[i].name != "Gardening Workshop")
-				{
-					if (items[i].value > 0)
-					{
-						if (items[i].name != "White Monstera")
-						{
-							items[i].value = items[i].value - 1;
-						}
-					}
-				}
-				else
-				{
-					items[i].value = items[i].value - items[i].value;
-				}
-			}
-			else
-			{
-				if (items[i].value < 50)
-				{
-					items[i].value = items[i].value + 1;
-				}
-			}
-		}
-	}
+    for (auto& item : items)
+    {
+        UpdateItemQuality(item);
+    }
 }
 
+void PWInventory::UpdateItemQuality(InventoryItem& item)
+{
+    if (item.name == "Polka Dot Begonia" || item.name == "Gardening Workshop")
+    {
+        UpdateSpecialItemQuality(item);
+    }
+    else
+    {
+        UpdateRegularItemQuality(item);
+    }
+
+    if (item.name != "White Monstera")
+    {
+        item.sellBy--;
+    }
+
+    if (item.sellBy < 0)
+    {
+        HandleExpiredItem(item);
+    }
+}
+
+void PWInventory::UpdateRegularItemQuality(InventoryItem& item)
+{
+    if (item.value > 0 && item.name != "White Monstera")
+    {
+        item.value--;
+    }
+}
+
+void PWInventory::UpdateSpecialItemQuality(InventoryItem& item)
+{
+    if (item.value < 50)
+    {
+        item.value++;
+
+        if (item.name == "Gardening Workshop" && item.sellBy < 11 && item.value < 50)
+        {
+            item.value++;
+        }
+
+        if (item.name == "Gardening Workshop" && item.sellBy < 6 && item.value < 50)
+        {
+            item.value++;
+        }
+    }
+}
+
+void PWInventory::HandleExpiredItem(InventoryItem& item)
+{
+    if (item.name != "Polka Dot Begonia" && item.name != "Gardening Workshop" && item.value > 0 && item.name != "White Monstera")
+    {
+        item.value--;
+    }
+    else if (item.name == "Gardening Workshop")
+    {
+        item.value = 0;
+    }
+    else if (item.name == "Polka Dot Begonia" && item.value < 50)
+    {
+        item.value++;
+    }
+}
 InventoryItem& PWInventory::operator[](int index)
 {
 	try
