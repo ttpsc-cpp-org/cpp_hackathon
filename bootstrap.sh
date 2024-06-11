@@ -8,7 +8,7 @@ fi
 
 python3 -m venv venv
 . venv/bin/activate
-pip3 install gcovr "conan==1.64.1"
+pip3 install -r requirements.txt
 conan config install ./conan
 
 printf "
