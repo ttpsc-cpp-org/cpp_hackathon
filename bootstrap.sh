@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/bash
 set -e
 
 if command -v apt-get >/dev/null 2>&1; then
@@ -14,4 +14,4 @@ conan config install ./conan
 printf "
 Use 'source venv/bin/activate' to activate the virtual environment.
 Press Enter to proceed..."
-read -r _unused_variable
+#read -r _unused_variable

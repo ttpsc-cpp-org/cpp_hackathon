@@ -1,6 +1,6 @@
 
 # Use an official Python runtime as a parent image
-FROM python:3.10-slim-buster
+FROM ubuntu:22.04
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -16,13 +16,15 @@ LABEL name="cpp_hackathon Codespace" \
 # Install any needed packages specified in requirements.txt
 # Copy only the necessary files
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application code
 COPY . .
 
 # Install CMake and Conan
-RUN apt-get update && apt-get install -y cmake
+RUN apt-get update && apt-get install -y gcc cmake build-essential --fix-missing
 
 # Clean up
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+RUN ./bootstrap.sh
