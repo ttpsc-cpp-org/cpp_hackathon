@@ -19,12 +19,15 @@ COPY requirements.txt ./
 #RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of your application code
-COPY . .
+COPY . ./
 
 # Install CMake and Conan
 RUN apt-get update && apt-get install -y gcc cmake build-essential --fix-missing
 
-# Clean up
-RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+# Add execute permissions to bootstrap.sh
+RUN chmod +x ./*.sh
 
 RUN ./bootstrap.sh
+RUN /bin/bash -c 'echo "python3 -m venv venv && . venv/bin/activate" >> ~/.bashrc'
+# Clean up
+RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 
 if command -v apt-get >/dev/null 2>&1; then
