@@ -6,7 +6,7 @@ if command -v apt-get >/dev/null 2>&1; then
     apt-get install -y python3 python3-pip cmake ninja-build python3-venv
 fi
 
-python3 -m venv venv
-. venv/bin/activate
+python3 -m venv .venv
+. .venv/bin/activate
 pip3 install -r requirements.txt
 conan config install ./conan
