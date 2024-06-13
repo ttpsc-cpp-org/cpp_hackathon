@@ -10,8 +10,3 @@ python3 -m venv venv
 . venv/bin/activate
 pip3 install -r requirements.txt
 conan config install ./conan
-
-printf "
-Use 'source venv/bin/activate' to activate the virtual environment.
-Press Enter to proceed..."
-read -r _unused_variable
