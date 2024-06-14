@@ -1,6 +1,6 @@
 */Debug/*
 */Release/*
 /build
-venv
+.venv
 Lib
 Scripts
